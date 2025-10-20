@@ -1,0 +1,32 @@
+{
+  "name": "autodealer-frontend",
+  "version": "1.0.0",
+  "description": "AutoDealer - Hệ thống bán ô tô trực tuyến",
+  "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
+  },
+  "overrides": {
+    "cssnano": "6.0.1",
+    "postcss": "8.4.32"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.0.0",
+    "nuxt": "^3.8.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.8.4",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/nuxt": "^10.5.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5"
+  }
+}
