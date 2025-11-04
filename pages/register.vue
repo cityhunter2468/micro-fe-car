@@ -16,15 +16,15 @@
       <form class="mt-8 space-y-6" @submit.prevent="handleRegister">
         <div class="space-y-4">
           <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Họ và tên</label>
+            <label for="username" class="block text-sm font-medium text-gray-700">Tên đăng nhập</label>
             <input
-              id="name"
-              v-model="form.name"
-              name="name"
+              id="username"
+              v-model="form.username"
+              name="username"
               type="text"
               required
               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
-              placeholder="Nhập họ và tên"
+              placeholder="Nhập tên đăng nhập"
             />
           </div>
           
@@ -39,6 +39,18 @@
               required
               class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               placeholder="Địa chỉ email"
+            />
+          </div>
+          
+          <div>
+            <label for="phone" class="block text-sm font-medium text-gray-700">Số điện thoại (tùy chọn)</label>
+            <input
+              id="phone"
+              v-model="form.phone"
+              name="phone"
+              type="tel"
+              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+              placeholder="Số điện thoại"
             />
           </div>
           
@@ -104,10 +116,11 @@
 <script setup>
 // Form data
 const form = reactive({
-  name: '',
+  username: '',
   email: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  phone: ''
 })
 
 const loading = ref(false)
@@ -126,6 +139,11 @@ const handleRegister = async () => {
     return
   }
   
+  if (form.username.length < 3) {
+    error.value = 'Tên đăng nhập phải có ít nhất 3 ký tự'
+    return
+  }
+  
   loading.value = true
   error.value = ''
   success.value = ''
@@ -133,9 +151,10 @@ const handleRegister = async () => {
   try {
     const { register } = useAuth()
     const result = await register({
-      name: form.name,
+      username: form.username,
       email: form.email,
-      password: form.password
+      password: form.password,
+      phone: form.phone
     })
     
     if (result.success) {

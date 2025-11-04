@@ -9,8 +9,12 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
     public: {
-      apiBase: process.env.API_BASE_URL || 'http://localhost:8080'
+      apiBase: process.env.API_BASE_URL || 'http://localhost:3636'
     }
+  },
+  devServer: {
+    port: 3000,
+    host: 'localhost'
   },
   ssr: false, // SPA mode for micro frontend
   nitro: {

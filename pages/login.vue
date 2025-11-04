@@ -16,16 +16,16 @@
       <form class="mt-8 space-y-6" @submit.prevent="handleLogin">
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
-            <label for="email" class="sr-only">Email</label>
+            <label for="username" class="sr-only">Tên đăng nhập</label>
             <input
-              id="email"
-              v-model="form.email"
-              name="email"
-              type="email"
-              autocomplete="email"
+              id="username"
+              v-model="form.username"
+              name="username"
+              type="text"
+              autocomplete="username"
               required
               class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 focus:z-10 sm:text-sm"
-              placeholder="Địa chỉ email"
+              placeholder="Tên đăng nhập"
             />
           </div>
           <div>
@@ -79,7 +79,7 @@ if (isAuthenticated.value) {
 
 // Form data
 const form = reactive({
-  email: '',
+  username: '',
   password: ''
 })
 
@@ -92,7 +92,7 @@ const handleLogin = async () => {
   
   try {
     const { login } = useAuth()
-    const result = await login(form.email, form.password)
+    const result = await login(form.username, form.password)
     
     if (result.success) {
       await navigateTo('/dashboard')
